@@ -200,7 +200,7 @@ function createWorld() {
     var world = [];
 
     for (var i = 0; i < 100; i++) {
-        world.append(new UnidentifedFlyingObject("Mars", Math.random() * 5));
+        world.append(new UnidentifiedFlyingObject("Mars", Math.random() * 5));
     }
 
     return world;
