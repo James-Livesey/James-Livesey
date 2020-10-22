@@ -256,12 +256,12 @@ $("body").append(
 ```
 
 ## Enumerators
-Enumerators must be in SHOUTY_CASE. In JavaScript, enumerators must be emulated
+Enumerators must be in camelCase. In JavaScript, enumerators must be emulated
 using a constant object. I like enumerators ─ they're much nicer than using
 strings to identify multiple cases!
 
 ```javascript
-const CARDINAL_DIRECTIONS = {
+const cardinalDirections = {
     NORTH: 0,
     EAST: 1,
     SOUTH: 2,
