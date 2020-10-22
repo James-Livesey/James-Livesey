@@ -2,7 +2,7 @@
 I'm very particular about the way I arrange the syntax in my code. I believe
 that having a strict, distinct coding style is something that every programmer
 should have. Otherwise, code will gradually get messier and more unreadable as
-the codebase gets mutated in ways that do not conform to _any_ codeing style,
+the codebase gets mutated in ways that do not conform to _any_ coding style,
 _ever_.
 
 The definitions in this coding style document have been formulated over many
@@ -111,10 +111,14 @@ There should be one space (and one space only) between tokens (such as `+` and
 is absolutely necessary, or when expanding brackets onto multiple lines. If you
 don't, it'llfeellikeyou'rereadingthecodingequivalentofthis!
 
-There are only three exceptions to this rule: colons (`:`), commas (`;`) and
-semicolons (`;`). This is because these tokens are generally used to list things
-such as commands and values.
-
+There are a few exceptions to this rule:
+* Colons (`:`) that are used outside of ternary operators should not have a
+  space before them (when they're being used in ternary operations, both spaces
+  should surround the `:`)
+* Commas (`,`) and semicolons (`;`) should not have a space before them
+* Unary operators (such as exclamation marks `!`and tildes `~`) should not have
+  a space after them
+.
 **Example:**
 ```javascript
 function calculateMean(values) {
