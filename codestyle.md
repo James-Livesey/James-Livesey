@@ -117,8 +117,8 @@ There are a few exceptions to this rule:
   should surround the `:`)
 * Commas (`,`) and semicolons (`;`) should not have a space before them
 * Unary operators (such as exclamation marks `!`and tildes `~`) should not have
-  a space after them
-.
+  a space after them.
+
 **Example:**
 ```javascript
 function calculateMean(values) {
