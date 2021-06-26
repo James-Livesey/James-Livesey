@@ -171,7 +171,7 @@ console.log(calculateMean(weightScores([
 ## Identifier naming
 I am an avid user of camelCase naming. This is because camelCase is used
 extensively throughout the JavaScript standard library. Other kinds of cases
-such as flatcase, PascalCase, Snake_Case, SHOUTY_CASE and kebab-base should not
+such as flatcase, PascalCase, Snake_Case, SHOUTY_CASE and kebab-case should not
 be used (in fact the latter case would not work in most programming languages).
 
 There are two exceptions to this: constant identifiers and class identifiers.
