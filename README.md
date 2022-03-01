@@ -8,3 +8,5 @@ Welcome to my GitHub profile! You can find out more about me on [my website](htt
 **Misc:** 🖌 [My coding style](https://github.com/James-Livesey/James-Livesey/blob/main/codestyle.md)
 
 **Contact:** 📧 [james@jamesl.me](mailto:james@jamesl.me) · 💬 [DM me on Glipo](https://glipo.net/u/James)
+
+<a href="https://donate.redcross.org.uk/appeal/ukraine-crisis-appeal"><img src="https://img.shields.io/badge/I%20support-Ukraine's%20independence-yellow?labelColor=005bbb&color=ffd500&style=flat"></a>
