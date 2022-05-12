@@ -6,7 +6,7 @@
 
 Being 18 years old, most computers I used when growing up didn't have that sense of direct access to the hardware that retro computers from the '80s did, and so learning about some of the crazy stuff people have done with the technology at the time (and in the present) is really insightful. I certainly recommend this book — in part because computers have generally evolved into these opaque beasts that make you feel that you're always a few levels of abstraction above their bare-metal hardware (the fun bits); the book does a fantastic job of telling how that has not always been the case.
 
-Pages 233-239 of the book discuss about porting the famous _10 PRINT_ program in assembly language as a more 'direct' and low-level version of its BASIC counterpart. The book lists the 10-line assembly code for the program:
+Pages 233-239 of the book discuss about porting the famous _10 PRINT_ program to assembly language as a more 'direct' and low-level version of its BASIC counterpart. The book lists the 10-line assembly code for the program:
 
 ```asm
     *= $1000    ; starting memory location
@@ -22,9 +22,9 @@ loop            ; label for loop location
     bne loop    ; repeat
 ```
 
-Having mostly written high-level JavaScript code for my projects, and have only written a small amount of relatively-low-level C code, for a long time, I've had a desire to write code that was truly low-level — down to the CPU level — to truly understand how the silicon chips inside our computers work. As an experiment, I wanted to get this assembly code to run.
+Having mostly written high-level JavaScript code for my projects, and having only written a small amount of relatively-low-level C code, for a long time, I've had a desire to write code that was truly low-level — down to the CPU level — to truly understand how the silicon chips inside our computers work. As an experiment, I wanted to get this assembly code to run.
 
-To execute this code, one would typically use an _assembler_: a program that converts source assembly code (such as this one) into a raw array of bytes that the Commodore 64's CPU — the 6502 — can process, known as machine code. However, without an assembler on-hand, I had to perform this task manually. Besides, assembling a small program like this one into an executable binary yourself teaches you a lot about how an assembler does its job; and it turns out to be a lot of fun (for small programs, anyway)!
+To execute this code, one would typically use an _assembler_: a program that converts source assembly code (such as this one) into a raw array of bytes that the Commodore 64's CPU — the [MOS Technology 6502](https://en.wikipedia.org/wiki/MOS_Technology_6502) — can process, known as machine code. However, without an assembler on-hand, I had to perform this task manually. Besides, assembling a small program like this one into an executable binary yourself teaches you a lot about how an assembler does its job; and it turns out to be a lot of fun (for small programs, anyway)!
 
 I went through each line of the assembly code and converted it to machine code, one at a time. Below, you'll see the hexadecimal representation of each human-readable assembly counterpart shown after an `=` sign.
 
