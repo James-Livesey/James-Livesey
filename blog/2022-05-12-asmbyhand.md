@@ -22,7 +22,7 @@ loop            ; label for loop location
     bne loop    ; repeat
 ```
 
-Having mostly written high-level JavaScript code for my projects, and having only written a small amount of relatively-low-level C code, for a long time, I've had a desire to write code that was truly low-level — down to the CPU level — to truly understand how the silicon chips inside our computers work. As an experiment, I wanted to get this assembly code to run.
+Having mostly written high-level JavaScript code for my projects, and having only written a small amount of relatively-low-level C code, for a long time, I've had a desire to write code that's truly low-level — down to the CPU level — to truly understand how the silicon chips inside our computers work. As an experiment, I wanted to get this assembly code to run.
 
 To execute this code, one would typically use an _assembler_: a program that converts source assembly code (such as this one) into a raw array of bytes that the Commodore 64's CPU — the [MOS Technology 6502](https://en.wikipedia.org/wiki/MOS_Technology_6502) — can process, known as machine code. However, without an assembler on-hand, I had to perform this task manually. Besides, assembling a small program like this one into an executable binary yourself teaches you a lot about how an assembler does its job; and it turns out to be a lot of fun (for small programs, anyway)!
 
