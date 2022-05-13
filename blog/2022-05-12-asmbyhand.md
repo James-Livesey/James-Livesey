@@ -1,6 +1,6 @@
 # Assembling By Hand: Typing a Commodore 64 Program's Machine Code, One Byte at a Time
 
-[_10 PRINT CHR$(205.5+RND(1)); : GOTO 10_](https://10print.org/) is a multi-authored book that explores the creativity of computer programming by beginning with the analysis of a famous one-line BASIC program by which the book is titled. Executing this on the decades-old Commodore 64 computer produces a maze-like pattern by just entering one line of code:
+[_10 PRINT CHR$(205.5+RND(1)); : GOTO 10_](https://10print.org/) is a multi-authored book that explores the creativity of computer programming by beginning with the analysis of a famous one-line BASIC program by which the book is titled. Executing this one-liner on the decades-old Commodore 64 computer produces a mesmerising maze-like pattern that you likely wouldn't expect from entering just one line of code:
 
 ![The 10 PRINT program being run through Commodore BASIC](https://raw.githubusercontent.com/James-Livesey/James-Livesey/main/media/asmbyhand1.png)
 
@@ -26,7 +26,7 @@ Having mostly written high-level JavaScript code for my projects, and having onl
 
 To execute this code, one would typically use an _assembler_: a program that converts source assembly code (such as this one) into a raw array of bytes that the Commodore 64's CPU — the [MOS Technology 6502](https://en.wikipedia.org/wiki/MOS_Technology_6502) — can process, known as machine code. However, without an assembler on-hand, I had to perform this task manually. Besides, assembling a small program like this one into an executable binary yourself teaches you a lot about how an assembler does its job; and it turns out to be a lot of fun (for small programs, anyway)!
 
-I went through each line of the assembly code and converted it to machine code, one at a time. Below, you'll see the hexadecimal representation of each human-readable assembly counterpart shown after an `=` sign.
+I went through each line of the assembly code and converted it to machine code, one at a time.
 
 ```
 *= $1000        ; starting memory location
@@ -36,11 +36,13 @@ This line isn't so much an instruction to the CPU, but rather an instruction to 
 
 > This line tells the Commodore 64 where to put the program in memory, so that it can be run by the user. In this case, hexadecimal $1000 equals decimal 4,096, meaning the user can enter `SYS 4096` at the READY prompt to execute this program.
 
+Continuing with the subsequent lines, you'll see the assembled hexadecimal representation of each human-readable line shown after an `=` sign.
+
 ```
 lda #$80 = A9 80
 ```
 
-`lda` is an instruction that is all too familiar to those who have seen assembly code before. I'm not going to delve into what each line and instruction does — the book gives a very detailed explanation — but I will comment on how each line was assembled.
+`LDA` is an instruction that is all too familiar to those who have seen assembly code before. I'm not going to delve too much into what each line and instruction does — the book gives a very detailed explanation — but I will comment on how each line was assembled.
 
 The instruction `LDA` in this case is understood by the CPU as opcode 0xA9. Opcodes are binary values that represent which corresponding instruction should be executed by the CPU, much like how assembly languages represent instructions using human-readable mnemonics (like `lda`).
 
@@ -50,7 +52,7 @@ In this case, there is another value, 0x80, which I have put after 0xA9. That's 
 sta $d40f = 8D 0F D4
 ```
 
-Onto the next instruction — `STA`, which is assembled into its opcode, 0x8D. This time, there are two bytes for the operand, because it's an address — 0xD40F, to be precise. The 6502 processor stored addresses as two bytes to provide a theoretical total of 65,536 bytes of addressable memory.
+Onto the next instruction — `STA`, which is assembled into its opcode, 0x8D. This time, there are two bytes for the operand, because it's an address — 0xD40F, to be precise. The 6502 processor stores addresses as two bytes to provide a theoretical total of 65,536 bytes of addressable memory.
 
 The 6502 processor is little-endian, meaning that for a 16-bit value, the least-significant eight bits are stored in the first byte, and the most-significant other eight bits in the second. This is why the 16-bit address 0xD40F is stored as `0F D4` in memory.
 
@@ -58,7 +60,7 @@ The 6502 processor is little-endian, meaning that for a 16-bit value, the least-
 sta $d412 = 8D 12 D4
 ```
 
-This line is very similar to the last step since the value stored in the CPU's accumulator (from the `STA` instruction) is being written to two memory addresses — 0xD40F and 0xD412.
+This line is very similar to the last step since the value stored in the CPU's accumulator (from the `LDA` instruction) is being written to two memory addresses — 0xD40F and 0xD412.
 
 > **Sidenote:** The more observant readers of this post may notice that later on, I forget to enter these three bytes when I type in my assembled program! Fortunately, the ommission of this line does not appear to be detrimental to the execution of the program, so I'd call my blunder a small (accidental) optimisation!
 
@@ -66,13 +68,13 @@ This line is very similar to the last step since the value stored in the CPU's a
 loop        ; label for loop location
 ```
 
-Much like the first line in the assembly code, this line does not contribute to any bytes of our final machine code, but rather is an instruction to the assembler — telling the assembler to keep tabs of this memory address so that we can refer to it later on.
+Much like the first line in the assembly code, this line does not contribute to any bytes of our final machine code, but rather it's an instruction to the assembler — telling the assembler to keep tabs of this memory address so that we can refer to it later on.
 
 ```
 lda $d41b = AD 1B D4
 ```
 
-You'll have noticed that we've got another `LDA` command — but this time, the opcode (0xAD) is different to last time (A9). That's because in this case, we're not loading a literal value (known as an "absolute" value) into the accumulator, but rather data from a ("direct") memory address, and so a different variation of the instruction is required — which leads to the use of a different opcode.
+You'll have noticed that we've got another `LDA` command — but this time, the opcode (0xAD) is different to last time (0xA9). That's because in this case, we're not loading a literal value (known as an 'absolute' value) into the accumulator, but rather data from a ('direct') memory address, and so a different variation of the instruction is required — which leads to the use of a different opcode.
 
 ```
 and #1 = 29 01
@@ -96,7 +98,7 @@ The `JSR` instruction is a call to a subroutine in the Commodore 64's kernel (kn
 bne loop = D0 F4
 ```
 
-This is where it gets interesting! `BNE` is an instruction to branch (jump) the execution of the program to an address. However — unfortunately for me — that address is relative, meaning that the CPU essentially adds the given value (0xF1 as you'll see) to the program counter register to jump to a memory address that's relative to the currently-executed code's memory address.
+This is where it gets interesting! `BNE` is an instruction to branch (jump) the execution of the program to an address. However — unfortunately for me — that address is relative, meaning that the CPU essentially adds the given value (0xF4 as you'll see) to the program counter register to jump to a memory address that's relative to the currently-executed code's memory address.
 
 I know that so far, I've assembled 10 bytes of program data since I encountered the `loop` label, and I'll assemble an additional two bytes for this instruction (since the program counter register will typically be pointing to the _next_ instruction). Therefore, the CPU needs to jump _back_ 12 bytes, AKA increment the program counter by -12 bytes. Using a bit of maths:
 
@@ -111,7 +113,7 @@ Therefore, I finish with `D0 F4`.
 > **Sidenote:** The _even more_ observant readers may notice that I don't load 0xF4 into my program, but I instead entered 0xF1, which is another mistake! For some reason, I miscounted the number of bytes since `loop` to be 15 instead of 12, but the program still executes fine, albeit from the instruction before the intended one.
 
 ## Giving the computer the binary
-Here's my assembled program in hex (wrapped to eight hex numbers per line):
+Here's my assembled program in hex (wrapped to eight hex bytes per line):
 
 ```
 A9 80 8D 0F D4 8D 12 D4
@@ -119,9 +121,9 @@ AD 1B D4 29 01 69 6D 20
 D2 FF D0 F4
 ```
 
-Not bad for 20 bytes of memory! It's certainly much more memory-efficient than what the RAM-sucking JavaScript interpreter of Chrome needs to execute the JavaScript equivalent of this program.
+Not bad for 20 bytes of memory! It's certainly much more memory-efficient than what Chrome's RAM-sucking JavaScript interpreter needs to execute the JavaScript equivalent of this program.
 
-Now, I need some way of storing the bytes of data into the Commodore 64's memory (at address 0x1000, of course). Commodore's BASIC supports the `POKE` command, that allows for direct access to memory — `POKE 4096, 8` would store the denary value 8 at memory address 4,096 (0x1000). I wrote a simple BASIC program to efficiently enter and load the binary data into memory:
+Now, I need some way of storing the bytes of data into the Commodore 64's memory (at address 0x1000, of course). Commodore's BASIC supports the `POKE` command, that allows for direct access to memory — `POKE 4096, 8` stores the denary value 8 at memory address 4,096 (0x1000). I wrote a simple BASIC program to efficiently enter and load the binary data into memory:
 
 ```basic
 10 I=4096
@@ -142,7 +144,7 @@ All I needed to do is to enter each byte, and then finish off by typing in `-1` 
 210 255 208 244
 ```
 
-After entering each denary number followed by the <kbd>Enter</kbd> key for each byte, I then entered `-1`, followed by `SYS 4096` to execute the loaded program (set the program counter to 0x1000):
+After entering each denary number followed by the <kbd>Enter</kbd> key for each byte, I then entered `-1`, followed by `SYS 4096` to execute the loaded program (this command sets the program counter to 0x1000):
 
 ![Entering each byte in denary when running my loader program](https://raw.githubusercontent.com/James-Livesey/James-Livesey/main/media/asmbyhand3.png)
 
