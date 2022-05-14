@@ -157,7 +157,7 @@ For some time now, I've owned a working second-hand Amstrad CPC 464 that we got 
 
 That's why I built atto, a cute little _fantasy computer_ and modern BASIC-like programming language that runs in the browser. By simply visiting [atto.devicefuture.org](https://atto.devicefuture.org), you can begin typing in BASIC commands and build whatever you want — if you enjoyed reading this post, I'm sure you'll have lots of fun with atto!
 
-![Screenshot of atto showing code to print the Fibonacci Sequence](https://raw.githubusercontent.com/devicefuture/atto/main/media/promo.png)
+[![Screenshot of atto showing code to print the Fibonacci Sequence](https://raw.githubusercontent.com/devicefuture/atto/main/media/promo.png)](https://atto.devicefuture.org)
 
 While unfortunately you can't `PEEK` and `POKE` into atto's memory (atto's code is interpreted using JavaScript), there's plenty of commands that can be arranged in a program to build games, simulations, musical projects, and more. It's also designed to be beginner-friendly with its modern features, such as syntax highlighting, advanced line editing and detailed interactive help guides.
 
