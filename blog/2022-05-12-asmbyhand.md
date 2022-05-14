@@ -4,7 +4,7 @@
 
 ![The 10 PRINT program being run through Commodore BASIC](https://raw.githubusercontent.com/James-Livesey/James-Livesey/main/media/asmbyhand1.png)
 
-Being 18 years old, most computers I have used when growing up didn't have that sense of direct access to the hardware that retro computers from the '80s did, and so learning about some of the crazy stuff people have done with the technology at the time (and in the present) is really insightful. I certainly recommend this book — in part because computers have generally evolved into these opaque beasts that make you feel that you're always a few levels of abstraction above their bare-metal hardware (the fun bits). The book does a fantastic job of telling how that has not always been the case.
+Being born in the early-2000s, most computers I have used when growing up didn't have that sense of direct access to the hardware that retro computers from the '80s did, and so learning about some of the crazy stuff people have done with the technology at the time (and in the present) is really insightful. I certainly recommend this book — in part because computers have generally evolved into these opaque beasts that make you feel that you're always a few levels of abstraction above their bare-metal hardware (the fun bits). The book does a fantastic job of telling how that has not always been the case.
 
 Pages 233-239 of the book discuss about porting the famous _10 PRINT_ program to assembly language as a more 'direct' and low-level version of its BASIC counterpart. The book lists the 10-line assembly code for the program:
 
