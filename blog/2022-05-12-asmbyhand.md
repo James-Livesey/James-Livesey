@@ -155,7 +155,11 @@ After entering each denary number followed by the <kbd>Enter</kbd> key for each 
 ## Conclusion
 For some time now, I've owned a working second-hand Amstrad CPC 464 that we got for about £20 from someone who unsurprisingly found it a bit obselete nowadays. I've thoroughly enjoyed the immediacy of being able to start writing BASIC code a few moments after flipping the power switch, and for some time, I've wanted to replicate that for modern computers.
 
-That's why I built atto, a cute little _fantasy computer_ and modern BASIC-like programming language that runs in the browser. By simply visiting [atto.devicefuture.org](https://atto.devicefuture.org), you can begin typing in BASIC commands and build whatever you want — if you enjoyed reading this post, I'm sure you'll have lots of fun with atto!
+_10 PRINT_ touches upon this in its conclusion (p. 264):
+
+> ... But the widespread access to programming that was provided by early microcomputers does not exist in the same form today as it did in the 1970s and 1980s. When people turn on today’s computers, they do not see a “READY” prompt that allows the user to immediately enter a BASIC program.
+
+That's why I built atto, a cute little _fantasy computer_ and modern BASIC-like programming language that runs in the browser. By simply visiting [atto.devicefuture.org](https://atto.devicefuture.org), you can begin typing in BASIC commands and build whatever you want in seconds — if you enjoyed reading this post, I'm sure you'll have lots of fun with atto!
 
 [![Screenshot of atto showing code to print the Fibonacci Sequence](https://raw.githubusercontent.com/devicefuture/atto/main/media/promo.png)](https://atto.devicefuture.org)
 
