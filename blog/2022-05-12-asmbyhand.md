@@ -1,10 +1,10 @@
 # Assembling By Hand: Typing a Commodore 64 Program's Machine Code, One Byte at a Time
 
-[_10 PRINT CHR$(205.5+RND(1)); : GOTO 10_](https://10print.org/) is a multi-authored book that explores the creativity of computer programming by beginning with the analysis of a famous one-line BASIC program by which the book is titled. Executing this one-liner on the decades-old Commodore 64 computer produces a mesmerising maze-like pattern that you likely wouldn't expect from entering just one line of code:
+[_10 PRINT CHR$(205.5+RND(1)); : GOTO 10_](https://10print.org/) is a multi-authored book that explores the creativity of computer programming by beginning with the analysis of a famous one-line BASIC program by which the book is titled. Executing this one-liner on the decades-old Commodore 64 computer produces a mesmerising maze-like pattern that you likely wouldn't expect from entering just a single line of code:
 
 ![The 10 PRINT program being run through Commodore BASIC](https://raw.githubusercontent.com/James-Livesey/James-Livesey/main/media/asmbyhand1.png)
 
-Being 18 years old, most computers I used when growing up didn't have that sense of direct access to the hardware that retro computers from the '80s did, and so learning about some of the crazy stuff people have done with the technology at the time (and in the present) is really insightful. I certainly recommend this book — in part because computers have generally evolved into these opaque beasts that make you feel that you're always a few levels of abstraction above their bare-metal hardware (the fun bits); the book does a fantastic job of telling how that has not always been the case.
+Being 18 years old, most computers I have used when growing up didn't have that sense of direct access to the hardware that retro computers from the '80s did, and so learning about some of the crazy stuff people have done with the technology at the time (and in the present) is really insightful. I certainly recommend this book — in part because computers have generally evolved into these opaque beasts that make you feel that you're always a few levels of abstraction above their bare-metal hardware (the fun bits). The book does a fantastic job of telling how that has not always been the case.
 
 Pages 233-239 of the book discuss about porting the famous _10 PRINT_ program to assembly language as a more 'direct' and low-level version of its BASIC counterpart. The book lists the 10-line assembly code for the program:
 
@@ -74,7 +74,7 @@ Much like the first line in the assembly code, this line does not contribute to 
 lda $d41b = AD 1B D4
 ```
 
-You'll have noticed that we've got another `LDA` command — but this time, the opcode (0xAD) is different to last time (0xA9). That's because in this case, we're not loading a literal value (known as an 'absolute' value) into the accumulator, but rather data from a ('direct') memory address, and so a different variation of the instruction is required — which leads to the use of a different opcode.
+You'll have noticed that we've got another `LDA` command — but this time, the opcode (0xAD) is different to last time (0xA9). That's because in this case, we're not loading a literal value (known as an 'absolute' value) into the accumulator, but rather data from a 'direct' memory address, and so a different variation of the instruction is required — which leads to the use of a different opcode.
 
 ```
 and #1 = 29 01
@@ -110,7 +110,7 @@ denary 12 = 00001100
 
 Therefore, I finish with `D0 F4`.
 
-> **Sidenote:** The _even more_ observant readers may notice that I don't load 0xF4 into my program, but I instead entered 0xF1, which is another mistake! For some reason, I miscounted the number of bytes since `loop` to be 15 instead of 12, but the program still executes fine, albeit from the instruction before the intended one.
+> **Sidenote:** The _even more_ observant readers may notice that I don't load 0xF4 into my program later on, but I instead entered 0xF1, which is another mistake! For some reason, I miscounted the number of bytes since `loop` to be 15 instead of 12, but the program still executes fine, albeit from the instruction before the intended one.
 
 ## Giving the computer the binary
 Here's my assembled program in hex (wrapped to eight hex bytes per line):
@@ -123,7 +123,7 @@ D2 FF D0 F4
 
 Not bad for 20 bytes of memory! It's certainly much more memory-efficient than what Chrome's RAM-sucking JavaScript interpreter needs to execute the JavaScript equivalent of this program.
 
-Now, I need some way of storing the bytes of data into the Commodore 64's memory (at address 0x1000, of course). Commodore's BASIC supports the `POKE` command, that allows for direct access to memory — `POKE 4096, 8` stores the denary value 8 at memory address 4,096 (0x1000). I wrote a simple BASIC program to efficiently enter and load the binary data into memory:
+Now, I needed some way of storing the bytes of data into the Commodore 64's memory (at address 0x1000, of course). Commodore's BASIC supports the `POKE` command, that allows for direct access to memory — `POKE 4096, 8` stores the denary value 8 at memory address 4,096 (0x1000). I wrote a simple BASIC program to efficiently enter and load the binary data into memory:
 
 ```basic
 10 I=4096
@@ -148,9 +148,19 @@ After entering each denary number followed by the <kbd>Enter</kbd> key for each 
 
 ![Entering each byte in denary when running my loader program](https://raw.githubusercontent.com/James-Livesey/James-Livesey/main/media/asmbyhand3.png)
 
-...and it worked!
+...and it worked! In fact, it ran several times faster than the BASIC version of the program, since the code is being directly executed, rather than being interpreted by the Commodore 64's BASIC interpreter.
 
 ![The assembled and loaded 10 PRINT demo, running in the emulator](https://raw.githubusercontent.com/James-Livesey/James-Livesey/main/media/asmbyhand4.png)
 
+## Conclusion
+For some time now, I've owned a working second-hand Amstrad CPC 464 that we got for about £20 from someone who unsurprisingly found it a bit obselete nowadays. I've thoroughly enjoyed the immediacy of being able to start writing BASIC code a few moments after flipping the power switch, and for some time, I've wanted to replicate that for modern computers.
 
-_I'll add some stuff about atto or something here, but for now, this'll do for one night!_
+That's why I built atto, a cute little _fantasy computer_ and modern BASIC-like programming language that runs in the browser. By simply visiting [atto.devicefuture.org](https://atto.devicefuture.org), you can begin typing in BASIC commands and build whatever you want — if you enjoyed reading this post, I'm sure you'll have lots of fun with atto!
+
+![Screenshot of atto showing code to print the Fibonacci Sequence](https://raw.githubusercontent.com/devicefuture/atto/main/media/promo.png)
+
+While unfortunately you can't `PEEK` and `POKE` into atto's memory (atto's code is interpreted using JavaScript), there's plenty of commands that can be arranged in a program to build games, simulations, musical projects, and more. It's also designed to be beginner-friendly with its modern features, such as syntax highlighting, advanced line editing and detailed interactive help guides.
+
+And yes, [_10 PRINT_ works in atto, too](https://twitter.com/codeurdreams/status/1412489697214054403) — with a few small adaptations, of course, such as using the Unicode U+2571 and U+2572 characters instead of the original PETSCII ones.
+
+That's pretty much all from me about this for now. Thanks for reading!
