@@ -92,7 +92,7 @@ adc #$6d = 69 6D
 jsr $ffd2 = 20 D2 FF
 ```
 
-The `JSR` instruction is a call to a subroutine in the Commodore 64's kernel (known as the _KERNAL_). That subroutine is stored at memory address 0xFFD2, and is a subroutine that prints a character to the screen from the accumulator.
+The `JSR` instruction is a call to a subroutine. In this case, the subroutine is in the Commodore 64's kernel (known as the _KERNAL_), and is stored at memory address 0xFFD2. Its job is to print a character to the screen from the accumulator.
 
 ```
 bne loop = D0 F4
