@@ -1,5 +1,5 @@
 ### 👋 Hi, I'm James!
-Welcome to my GitHub profile! You can find out more about me on [my website](https://jamesl.me). I'm a passionate 18-year-old coder and have a big interest in what technology can do to change the world.
+Welcome to my GitHub profile! You can find out more about me on [my website](https://jamesl.me). I'm a passionate 19-year-old coder and have a big interest in what technology can do to change the world.
 
 **Interests:** Open-source software · Edu tech · Climate crisis and how tech can help · Accessibility and usability
 
